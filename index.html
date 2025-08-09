@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Rifa - 10,000 Tickets</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo and Trust Icons -->
+                <div class="header-icons">
+                    <div class="logo-icon">🎟️ RIFA</div>
+                    <div class="trust-icon">✓ CONFIABLE</div>
+                </div>
+                
+                <!-- Premios Button -->
+                <nav class="header-nav">
+                    <a href="premios.html" class="premios-btn">Premios</a>
+                </nav>
+                
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <p class="progress-text">Se han vendido <span id="progress-percentage">0%</span> de los tickets</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Central Section -->
+            <section class="ticket-section">
+                <h1 class="main-title">Selecciona tu cantidad de tickets</h1>
+                
+                <!-- Ticket Quantity Buttons -->
+                <div class="quantity-buttons">
+                    <button class="qty-btn" data-qty="1">1</button>
+                    <button class="qty-btn" data-qty="2">2</button>
+                    <button class="qty-btn" data-qty="4">4</button>
+                    <button class="qty-btn" data-qty="6">6</button>
+                    <button class="qty-btn" data-qty="10">10</button>
+                    <button class="qty-btn" data-qty="20">20</button>
+                </div>
+                
+                <!-- Manual Input -->
+                <div class="manual-input">
+                    <label for="custom-qty">Cantidad personalizada:</label>
+                    <input type="number" id="custom-qty" min="1" max="100" placeholder="Ingresa cantidad">
+                </div>
+                
+                <!-- Total Display -->
+                <div class="total-display">
+                    <h2 id="total-amount">Total: 0 BsS</h2>
+                </div>
+                
+                <!-- Buy Button -->
+                <button class="buy-btn" id="buy-btn" disabled>Comprar Tickets</button>
+            </section>
+            
+            <!-- Ticket Search Section -->
+            <section class="search-section">
+                <h2>Buscar Tickets por Cédula</h2>
+                <div class="search-form">
+                    <input type="text" id="cedula-search" placeholder="Ingresa tu cédula">
+                    <button class="search-btn" id="search-btn">Buscar Ticket</button>
+                </div>
+                <div class="search-results" id="search-results"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirmar Compra</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Payment Method -->
+                <div class="payment-method">
+                    <h3>Método de Pago</h3>
+                    <div class="payment-option">
+                        <div class="payment-info">
+                            <h4>BNC Pago Móvil</h4>
+                            <img src="https://i.imgur.com/placeholder150x150.png" alt="BNC Pago Móvil" class="payment-image">
+                        </div>
+                        
+                        <!-- Bank Details (Expandable) -->
+                        <div class="bank-details">
+                            <button class="expand-btn" id="expand-details">Ver datos bancarios</button>
+                            <div class="bank-info" id="bank-info">
+                                <p><strong>Número:</strong> 0424-9999999</p>
+                                <p><strong>Cédula:</strong> 99999999</p>
+                                <p><strong>Código:</strong> 0191</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Confirmation Form -->
+                <form class="payment-form" id="payment-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apellido">Apellido *</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cedula">Cédula *</label>
+                        <input type="text" id="cedula" name="cedula" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referencia">N° Referencia *</label>
+                        <input type="text" id="referencia" name="referencia" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="capture">Capture</label>
+                        <input type="file" id="capture" name="capture" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="correo">Correo (opcional)</label>
+                        <input type="email" id="correo" name="correo">
+                    </div>
+                    
+                    <button type="submit" class="confirm-btn">Confirmar Pago</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Social Media Buttons -->
+    <div class="social-float">
+        <a href="https://facebook.com/link-temporal" target="_blank" class="social-btn facebook">f</a>
+        <a href="https://instagram.com/link-temporal" target="_blank" class="social-btn instagram">ig</a>
+        <a href="https://tiktok.com/link-temporal" target="_blank" class="social-btn tiktok">tt</a>
+        <a href="https://wa.me/584126779438" target="_blank" class="social-btn whatsapp">wa</a>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <footer class="footer">
+        <div class="container">
+            <button class="terms-btn" id="terms-btn">Términos y Condiciones</button>
+        </div>
+    </footer>
+
+    <!-- Terms Modal -->
+    <div class="modal-overlay" id="terms-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Términos y Condiciones</h2>
+                <button class="close-btn" id="close-terms">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="terms-content">
+                    <p>1. Solo mayores de 18 años.</p>
+                    <p>2. Premios se retiran en dirección indicada.</p>
+                    <p>3. Autorización para uso de imágenes en redes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
